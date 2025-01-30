@@ -28,3 +28,7 @@ export const MAIN_MENU_SUBTITLE_FONT = 'mania';
 export const MAIN_MENU_SUBTITLE_SIZE = 32;
 export const MAIN_MENU_SUBTITLE_OFFSET_X = 0;
 export const MAIN_MENU_SUBTITLE_OFFSET_Y = 100;
+
+// Sonic constants
+export const SONIC_SCALE = 4;
+export const SONIC_MAIN_MENU_POSITION = { x: 200, y: 745 };
