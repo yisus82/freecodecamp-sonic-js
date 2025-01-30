@@ -1,8 +1,9 @@
 import kaplay from 'kaplay';
+import { DISPLAY_HEIGHT, DISPLAY_WIDTH } from './constants';
 
 const k = kaplay({
-  width: 1920,
-  height: 1080,
+  width: DISPLAY_WIDTH,
+  height: DISPLAY_HEIGHT,
   letterbox: true,
   background: [0, 0, 0],
   global: false,
