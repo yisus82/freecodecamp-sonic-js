@@ -16,3 +16,15 @@ export const PLATFORM_OFFSET_X = 0;
 export const PLATFORM_OFFSET_Y = 450;
 export const PLATFORM_SCALE = 4;
 export const PLATFORM_MENU_SPEED = 4000;
+
+// Text constants
+export const MAIN_MENU_TITLE = 'SONIC RING RUN';
+export const MAIN_MENU_TITLE_FONT = 'mania';
+export const MAIN_MENU_TITLE_SIZE = 96;
+export const MAIN_MENU_TITLE_OFFSET_X = 0;
+export const MAIN_MENU_TITLE_OFFSET_Y = -100;
+export const MAIN_MENU_SUBTITLE = 'Press Space/Click/Touch to Play';
+export const MAIN_MENU_SUBTITLE_FONT = 'mania';
+export const MAIN_MENU_SUBTITLE_SIZE = 32;
+export const MAIN_MENU_SUBTITLE_OFFSET_X = 0;
+export const MAIN_MENU_SUBTITLE_OFFSET_Y = 100;

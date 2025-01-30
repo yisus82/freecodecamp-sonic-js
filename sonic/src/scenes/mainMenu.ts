@@ -5,6 +5,16 @@ import {
   BACKGROUND_OPACITY,
   BACKGROUND_PIECE_WIDTH,
   BACKGROUND_SCALE,
+  MAIN_MENU_SUBTITLE,
+  MAIN_MENU_SUBTITLE_FONT,
+  MAIN_MENU_SUBTITLE_OFFSET_X,
+  MAIN_MENU_SUBTITLE_OFFSET_Y,
+  MAIN_MENU_SUBTITLE_SIZE,
+  MAIN_MENU_TITLE,
+  MAIN_MENU_TITLE_FONT,
+  MAIN_MENU_TITLE_OFFSET_X,
+  MAIN_MENU_TITLE_OFFSET_Y,
+  MAIN_MENU_TITLE_SIZE,
   PLATFORM_MENU_SPEED,
   PLATFORM_OFFSET_X,
   PLATFORM_OFFSET_Y,
@@ -41,6 +51,18 @@ const mainMenu = () => {
       k.scale(PLATFORM_SCALE),
     ]),
   ];
+
+  k.add([
+    k.text(MAIN_MENU_TITLE, { font: MAIN_MENU_TITLE_FONT, size: MAIN_MENU_TITLE_SIZE }),
+    k.anchor('center'),
+    k.pos(k.center().x + MAIN_MENU_TITLE_OFFSET_X, k.center().y + MAIN_MENU_TITLE_OFFSET_Y),
+  ]);
+
+  k.add([
+    k.text(MAIN_MENU_SUBTITLE, { font: MAIN_MENU_SUBTITLE_FONT, size: MAIN_MENU_SUBTITLE_SIZE }),
+    k.anchor('center'),
+    k.pos(k.center().x + MAIN_MENU_SUBTITLE_OFFSET_X, k.center().y + MAIN_MENU_SUBTITLE_OFFSET_Y),
+  ]);
 
   k.onUpdate(() => {
     if (backgroundPieces[1].pos.x < 0) {
