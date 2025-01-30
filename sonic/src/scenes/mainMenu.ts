@@ -26,6 +26,10 @@ import k from '../kaplayCtx';
 import { SONIC_MAIN_MENU_POSITION } from './../constants';
 
 const mainMenu = () => {
+  if (!k.getData('best-score')) {
+    k.setData('best-score', 0);
+  }
+
   const backgroundPieces = [
     k.add([
       k.sprite('background'),
@@ -91,6 +95,8 @@ const mainMenu = () => {
     platforms[0].move(-PLATFORM_MENU_SPEED, 0);
     platforms[1].moveTo(platforms[0].pos.x + PLATFORM_WIDTH * PLATFORM_SCALE, PLATFORM_OFFSET_Y);
   });
+
+  k.onButtonPress('jump', () => k.go('game'));
 };
 
 export default mainMenu;
