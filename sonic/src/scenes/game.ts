@@ -13,6 +13,7 @@ import {
   PLATFORM_SCALE,
   PLATFORM_WIDTH,
   SONIC_POSITION,
+  SONIC_SCALE,
 } from '../constants';
 import makeSonic from '../entities/sonic';
 import k from '../kaplayCtx';
@@ -47,7 +48,20 @@ const game = () => {
   ];
 
   const sonic = makeSonic(k.vec2(SONIC_POSITION.x, SONIC_POSITION.y));
+  sonic.setControls();
+  sonic.setEvents();
   k.add(sonic);
+
+  k.add([
+    k.rect(sonic.width * 2 * SONIC_SCALE, sonic.height * SONIC_SCALE),
+    k.opacity(0),
+    k.area(),
+    k.pos(
+      SONIC_POSITION.x - sonic.width * SONIC_SCALE,
+      SONIC_POSITION.y + (sonic.height / 2) * SONIC_SCALE
+    ),
+    k.body({ isStatic: true }),
+  ]);
 
   k.setGravity(GRAVITY);
   let gameSpeed = INITIAL_GAME_SPEED;

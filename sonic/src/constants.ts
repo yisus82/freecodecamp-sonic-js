@@ -32,6 +32,7 @@ export const MAIN_MENU_SUBTITLE_OFFSET_Y = 100;
 // Sonic constants
 export const SONIC_SCALE = 4;
 export const SONIC_POSITION = { x: 200, y: 745 };
+export const SONIC_JUMP_FORCE = 1700;
 
 // Game constants
 export const GRAVITY = 3100;
