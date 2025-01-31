@@ -9,6 +9,7 @@ export const BACKGROUND_OFFSET_Y = 0;
 export const BACKGROUND_SCALE = 2;
 export const BACKGROUND_OPACITY = 0.8;
 export const BACKGROUND_MENU_SPEED = 100;
+export const BACKGROUND_JUMP_RATIO = 0.2;
 
 // Platform constants
 export const PLATFORM_WIDTH = 1280;

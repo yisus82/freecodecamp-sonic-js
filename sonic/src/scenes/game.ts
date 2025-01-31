@@ -1,4 +1,5 @@
 import {
+  BACKGROUND_JUMP_RATIO,
   BACKGROUND_MENU_SPEED,
   BACKGROUND_OFFSET_X,
   BACKGROUND_OFFSET_Y,
@@ -83,6 +84,11 @@ const game = () => {
       backgroundPieces[0].pos.x + BACKGROUND_PIECE_WIDTH * BACKGROUND_SCALE,
       BACKGROUND_OFFSET_Y
     );
+
+    if (!sonic.isGrounded()) {
+      backgroundPieces[0].moveTo(backgroundPieces[0].pos.x, -sonic.pos.y * BACKGROUND_JUMP_RATIO);
+      backgroundPieces[1].moveTo(backgroundPieces[1].pos.x, -sonic.pos.y * BACKGROUND_JUMP_RATIO);
+    }
 
     if (platforms[1].pos.x < 0) {
       platforms[0].moveTo(platforms[1].pos.x + PLATFORM_WIDTH * PLATFORM_SCALE, PLATFORM_OFFSET_Y);
