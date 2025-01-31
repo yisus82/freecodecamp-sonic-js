@@ -20,10 +20,10 @@ import {
   PLATFORM_OFFSET_Y,
   PLATFORM_SCALE,
   PLATFORM_WIDTH,
+  SONIC_POSITION,
 } from '../constants';
 import makeSonic from '../entities/sonic';
 import k from '../kaplayCtx';
-import { SONIC_MAIN_MENU_POSITION } from './../constants';
 
 const mainMenu = () => {
   if (!k.getData('best-score')) {
@@ -70,7 +70,7 @@ const mainMenu = () => {
     k.pos(k.center().x + MAIN_MENU_SUBTITLE_OFFSET_X, k.center().y + MAIN_MENU_SUBTITLE_OFFSET_Y),
   ]);
 
-  k.add(makeSonic(k.vec2(SONIC_MAIN_MENU_POSITION.x, SONIC_MAIN_MENU_POSITION.y)));
+  k.add(makeSonic(k.vec2(SONIC_POSITION.x, SONIC_POSITION.y)));
 
   k.onUpdate(() => {
     if (backgroundPieces[1].pos.x < 0) {
