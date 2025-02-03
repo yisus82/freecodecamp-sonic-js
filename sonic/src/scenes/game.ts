@@ -1,3 +1,4 @@
+import { GameObj } from 'kaplay';
 import {
   BACKGROUND_JUMP_RATIO,
   BACKGROUND_MENU_SPEED,
@@ -57,6 +58,20 @@ const game = () => {
   const sonic = makeSonic(k.vec2(SONIC_POSITION.x, SONIC_POSITION.y));
   sonic.setControls();
   sonic.setEvents();
+
+  sonic.onCollide('enemy', (enemy: GameObj) => {
+    if (!sonic.isGrounded()) {
+      k.play('destroy', { volume: 0.5 });
+      k.play('hyper-ring', { volume: 0.5 });
+      k.destroy(enemy);
+      sonic.play('jump');
+      sonic.jump();
+      return;
+    }
+
+    k.play('hurt', { volume: 0.5 });
+  });
+
   k.add(sonic);
 
   k.add([
