@@ -47,7 +47,7 @@ export const MOTOBUG_AREA_OFFSET_X = -5;
 export const MOTOBUG_AREA_OFFSET_Y = 0;
 export const MOTOBUG_AREA_WIDTH = 32;
 export const MOTOBUG_AREA_HEIGHT = 32;
-export const MOTOBUG_POSITION = { x: 1920, y: 745 };
+export const MOTOBUG_POSITION = { x: 1920, y: 773 };
 export const MOTOBUG_SPEED = 300;
 export const MOTOBUG_MIN_SPAWN_INTERVAL = 0.5;
 export const MOTOBUG_MAX_SPAWN_INTERVAL = 2.5;
@@ -58,3 +58,9 @@ export const GAME_OVER_TITLE_FONT = 'mania';
 export const GAME_OVER_TITLE_SIZE = 96;
 export const GAME_OVER_TITLE_OFFSET_X = 0;
 export const GAME_OVER_TITLE_OFFSET_Y = -300;
+
+// Ring constants
+export const RING_SCALE = 4;
+export const RING_POSITION = { x: 1950, y: 745 };
+export const RING_MIN_SPAWN_INTERVAL = 0.5;
+export const RING_MAX_SPAWN_INTERVAL = 3.0;

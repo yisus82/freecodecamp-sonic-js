@@ -19,10 +19,14 @@ import {
   PLATFORM_OFFSET_Y,
   PLATFORM_SCALE,
   PLATFORM_WIDTH,
+  RING_MAX_SPAWN_INTERVAL,
+  RING_MIN_SPAWN_INTERVAL,
+  RING_POSITION,
   SONIC_POSITION,
   SONIC_SCALE,
 } from '../constants';
 import makeMotobug from '../entities/motobug';
+import makeRing from '../entities/ring';
 import makeSonic from '../entities/sonic';
 import k from '../kaplayCtx';
 
@@ -117,6 +121,28 @@ const game = () => {
   };
 
   spawnMotoBug();
+
+  const spawnRing = () => {
+    const ring = makeRing(k.vec2(RING_POSITION.x, RING_POSITION.y));
+
+    ring.onUpdate(() => {
+      ring.move(-gameSpeed, 0);
+    });
+
+    ring.onExitScreen(() => {
+      if (ring.pos.x < 0) {
+        k.destroy(ring);
+      }
+    });
+
+    k.add(ring);
+
+    const spawnInterval = k.rand(RING_MIN_SPAWN_INTERVAL, RING_MAX_SPAWN_INTERVAL);
+
+    k.wait(spawnInterval, spawnRing);
+  };
+
+  spawnRing();
 
   k.onUpdate(() => {
     if (backgroundPieces[1].pos.x < 0) {
