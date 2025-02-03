@@ -9,6 +9,11 @@ import {
   GAME_SPEED_INCREMENT,
   GRAVITY,
   INITIAL_GAME_SPEED,
+  MAX_GAME_SPEED,
+  MOTOBUG_MAX_SPAWN_INTERVAL,
+  MOTOBUG_MIN_SPAWN_INTERVAL,
+  MOTOBUG_POSITION,
+  MOTOBUG_SPEED,
   PLATFORM_OFFSET_X,
   PLATFORM_OFFSET_Y,
   PLATFORM_SCALE,
@@ -16,6 +21,7 @@ import {
   SONIC_POSITION,
   SONIC_SCALE,
 } from '../constants';
+import makeMotobug from '../entities/motobug';
 import makeSonic from '../entities/sonic';
 import k from '../kaplayCtx';
 
@@ -67,8 +73,32 @@ const game = () => {
   k.setGravity(GRAVITY);
   let gameSpeed = INITIAL_GAME_SPEED;
   k.loop(1, () => {
-    gameSpeed += GAME_SPEED_INCREMENT;
+    if (gameSpeed < MAX_GAME_SPEED) {
+      gameSpeed += GAME_SPEED_INCREMENT;
+    }
   });
+
+  const spawnMotoBug = () => {
+    const motobug = makeMotobug(k.vec2(MOTOBUG_POSITION.x, MOTOBUG_POSITION.y));
+
+    motobug.onUpdate(() => {
+      motobug.move(-(gameSpeed + MOTOBUG_SPEED), 0);
+    });
+
+    motobug.onExitScreen(() => {
+      if (motobug.pos.x < 0) {
+        k.destroy(motobug);
+      }
+    });
+
+    k.add(motobug);
+
+    const spawnInterval = k.rand(MOTOBUG_MIN_SPAWN_INTERVAL, MOTOBUG_MAX_SPAWN_INTERVAL);
+
+    k.wait(spawnInterval, spawnMotoBug);
+  };
+
+  spawnMotoBug();
 
   k.onUpdate(() => {
     if (backgroundPieces[1].pos.x < 0) {

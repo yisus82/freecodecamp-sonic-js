@@ -39,3 +39,15 @@ export const SONIC_JUMP_FORCE = 1700;
 export const GRAVITY = 3100;
 export const INITIAL_GAME_SPEED = 300;
 export const GAME_SPEED_INCREMENT = 50;
+export const MAX_GAME_SPEED = 3000;
+
+// Motobug constants
+export const MOTOBUG_SCALE = 4;
+export const MOTOBUG_AREA_OFFSET_X = -5;
+export const MOTOBUG_AREA_OFFSET_Y = 0;
+export const MOTOBUG_AREA_WIDTH = 32;
+export const MOTOBUG_AREA_HEIGHT = 32;
+export const MOTOBUG_POSITION = { x: 1920, y: 745 };
+export const MOTOBUG_SPEED = 300;
+export const MOTOBUG_MIN_SPAWN_INTERVAL = 0.5;
+export const MOTOBUG_MAX_SPAWN_INTERVAL = 2.5;
