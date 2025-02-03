@@ -51,3 +51,10 @@ export const MOTOBUG_POSITION = { x: 1920, y: 745 };
 export const MOTOBUG_SPEED = 300;
 export const MOTOBUG_MIN_SPAWN_INTERVAL = 0.5;
 export const MOTOBUG_MAX_SPAWN_INTERVAL = 2.5;
+
+// Game over constants
+export const GAME_OVER_TITLE = 'GAME OVER';
+export const GAME_OVER_TITLE_FONT = 'mania';
+export const GAME_OVER_TITLE_SIZE = 96;
+export const GAME_OVER_TITLE_OFFSET_X = 0;
+export const GAME_OVER_TITLE_OFFSET_Y = -300;

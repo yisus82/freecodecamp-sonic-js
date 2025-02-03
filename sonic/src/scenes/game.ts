@@ -27,6 +27,8 @@ import makeSonic from '../entities/sonic';
 import k from '../kaplayCtx';
 
 const game = () => {
+  const backgroundMusic = k.play('bg-music', { volume: 0.2, loop: true });
+
   const backgroundPieces = [
     k.add([
       k.sprite('background'),
@@ -70,6 +72,7 @@ const game = () => {
     }
 
     k.play('hurt', { volume: 0.5 });
+    k.go('gameOver', backgroundMusic);
   });
 
   k.add(sonic);
