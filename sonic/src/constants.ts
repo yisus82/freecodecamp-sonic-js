@@ -34,6 +34,11 @@ export const MAIN_MENU_SUBTITLE_OFFSET_Y = 100;
 export const SONIC_SCALE = 4;
 export const SONIC_POSITION = { x: 200, y: 745 };
 export const SONIC_JUMP_FORCE = 1700;
+export const SONIC_RING_COLLECT_UI_FONT = 'mania';
+export const SONIC_RING_COLLECT_UI_SIZE = 24;
+export const SONIC_RING_COLLECT_UI_COLOR = { r: 255, g: 255, b: 0 };
+export const SONIC_RING_COLLECT_UI_OFFSET_X = 120;
+export const SONIC_RING_COLLECT_UI_OFFSET_Y = -20;
 
 // Game constants
 export const GRAVITY = 3100;
@@ -64,3 +69,9 @@ export const RING_SCALE = 4;
 export const RING_POSITION = { x: 1950, y: 745 };
 export const RING_MIN_SPAWN_INTERVAL = 0.5;
 export const RING_MAX_SPAWN_INTERVAL = 3.0;
+
+// Score text constants
+export const SCORE_TEXT_FONT = 'mania';
+export const SCORE_TEXT_SIZE = 72;
+export const SCORE_TEXT_OFFSET_X = 20;
+export const SCORE_TEXT_OFFSET_Y = 20;

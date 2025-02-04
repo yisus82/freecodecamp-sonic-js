@@ -22,6 +22,10 @@ import {
   RING_MAX_SPAWN_INTERVAL,
   RING_MIN_SPAWN_INTERVAL,
   RING_POSITION,
+  SCORE_TEXT_FONT,
+  SCORE_TEXT_OFFSET_X,
+  SCORE_TEXT_OFFSET_Y,
+  SCORE_TEXT_SIZE,
   SONIC_POSITION,
   SONIC_SCALE,
 } from '../constants';
@@ -61,9 +65,27 @@ const game = () => {
     ]),
   ];
 
+  const scoreText = k.add([
+    k.text('SCORE: 0', { font: SCORE_TEXT_FONT, size: SCORE_TEXT_SIZE }),
+    k.pos(SCORE_TEXT_OFFSET_X, SCORE_TEXT_OFFSET_Y),
+  ]);
+  let score = 0;
+  let scoreMultiplier = 0;
+
   const sonic = makeSonic(k.vec2(SONIC_POSITION.x, SONIC_POSITION.y));
   sonic.setControls();
   sonic.setEvents();
+
+  sonic.onCollide('ring', (ring: GameObj) => {
+    k.play('ring', { volume: 0.5 });
+    k.destroy(ring);
+    score++;
+    scoreText.text = `SCORE: ${score}`;
+    sonic.ringCollectUI.text = '+1';
+    k.wait(1, () => {
+      sonic.ringCollectUI.text = '';
+    });
+  });
 
   sonic.onCollide('enemy', (enemy: GameObj) => {
     if (!sonic.isGrounded()) {
@@ -72,10 +94,18 @@ const game = () => {
       k.destroy(enemy);
       sonic.play('jump');
       sonic.jump();
+      scoreMultiplier++;
+      score += 10 * scoreMultiplier;
+      scoreText.text = `SCORE: ${score}`;
+      sonic.ringCollectUI.text = `+${10 * scoreMultiplier}`;
+      k.wait(1, () => {
+        sonic.ringCollectUI.text = '';
+      });
       return;
     }
 
     k.play('hurt', { volume: 0.5 });
+    k.setData('current-score', score);
     k.go('gameOver', backgroundMusic);
   });
 
@@ -145,6 +175,10 @@ const game = () => {
   spawnRing();
 
   k.onUpdate(() => {
+    if (sonic.isGrounded()) {
+      scoreMultiplier = 0;
+    }
+
     if (backgroundPieces[1].pos.x < 0) {
       backgroundPieces[0].moveTo(
         backgroundPieces[1].pos.x + BACKGROUND_PIECE_WIDTH * BACKGROUND_SCALE,
