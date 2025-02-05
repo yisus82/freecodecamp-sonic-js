@@ -7,6 +7,13 @@ import {
   BACKGROUND_OPACITY,
   BACKGROUND_PIECE_WIDTH,
   BACKGROUND_SCALE,
+  CONTROLS_TEXT,
+  CONTROLS_TEXT_FONT,
+  CONTROLS_TEXT_SIZE,
+  COUNTDOWN_TEXT_FONT,
+  COUNTDOWN_TEXT_OFFSET_X,
+  COUNTDOWN_TEXT_OFFSET_Y,
+  COUNTDOWN_TEXT_SIZE,
   GAME_SPEED_INCREMENT,
   GRAVITY,
   INITIAL_GAME_SPEED,
@@ -73,8 +80,6 @@ const game = () => {
   let scoreMultiplier = 0;
 
   const sonic = makeSonic(k.vec2(SONIC_POSITION.x, SONIC_POSITION.y));
-  sonic.setControls();
-  sonic.setEvents();
 
   sonic.onCollide('ring', (ring: GameObj) => {
     k.play('ring', { volume: 0.5 });
@@ -150,8 +155,6 @@ const game = () => {
     k.wait(spawnInterval, spawnMotoBug);
   };
 
-  spawnMotoBug();
-
   const spawnRing = () => {
     const ring = makeRing(k.vec2(RING_POSITION.x, RING_POSITION.y));
 
@@ -172,9 +175,48 @@ const game = () => {
     k.wait(spawnInterval, spawnRing);
   };
 
-  spawnRing();
+  const controlsText = k.add([
+    k.text(CONTROLS_TEXT, { font: CONTROLS_TEXT_FONT, size: CONTROLS_TEXT_SIZE }),
+    k.anchor('center'),
+    k.pos(k.center()),
+  ]);
+
+  let countdown = 3;
+  const countdownText = k.add([
+    k.text(`Game will start in ${countdown} seconds`, {
+      font: COUNTDOWN_TEXT_FONT,
+      size: COUNTDOWN_TEXT_SIZE,
+    }),
+    k.anchor('center'),
+    k.pos(k.center().x + COUNTDOWN_TEXT_OFFSET_X, k.center().y + COUNTDOWN_TEXT_OFFSET_Y),
+  ]);
+
+  k.loop(
+    1,
+    () => {
+      countdown--;
+      countdownText.text = `Game will start in ${countdown} seconds`;
+
+      if (countdown === 0) {
+        k.destroy(countdownText);
+        k.destroy(controlsText);
+        sonic.setControls();
+        sonic.setEvents();
+        spawnMotoBug();
+        spawnRing();
+      }
+    },
+    3,
+    true
+  );
 
   k.onUpdate(() => {
+    if (countdown > 0) {
+      backgroundPieces[0].moveTo(backgroundPieces[0].pos.x, -sonic.pos.y * BACKGROUND_JUMP_RATIO);
+      backgroundPieces[1].moveTo(backgroundPieces[1].pos.x, -sonic.pos.y * BACKGROUND_JUMP_RATIO);
+      return;
+    }
+
     if (sonic.isGrounded()) {
       scoreMultiplier = 0;
     }

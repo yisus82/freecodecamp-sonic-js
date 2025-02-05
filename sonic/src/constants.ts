@@ -75,3 +75,14 @@ export const SCORE_TEXT_FONT = 'mania';
 export const SCORE_TEXT_SIZE = 72;
 export const SCORE_TEXT_OFFSET_X = 20;
 export const SCORE_TEXT_OFFSET_Y = 20;
+
+// Controls text constants
+export const CONTROLS_TEXT = 'Press Space/Click/Touch to Jump!';
+export const CONTROLS_TEXT_FONT = 'mania';
+export const CONTROLS_TEXT_SIZE = 64;
+
+// Countdown text constants
+export const COUNTDOWN_TEXT_FONT = 'mania';
+export const COUNTDOWN_TEXT_SIZE = 48;
+export const COUNTDOWN_TEXT_OFFSET_X = 0;
+export const COUNTDOWN_TEXT_OFFSET_Y = 100;
